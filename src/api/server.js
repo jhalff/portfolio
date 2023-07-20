@@ -6,8 +6,9 @@ const app = express()
 const PORT = process.env.PORT || 3000;
 
 app.set("view engine", "pug")
-app.set("views", path.join(__dirname, "src/pug"))
-app.use("/img", express.static(path.join(__dirname, "public/img")))
+app.set("views", path.join(__dirname, "../pug"))
+app.use("/img", express.static(path.join(__dirname, "../../public/img")))
+app.use("/fonts", express.static(path.join(__dirname, "../../public/fonts")))
 
 app.get("/", (req, res) => {
     res.render("layout")

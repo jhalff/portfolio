@@ -1,5 +1,25 @@
 @import "variables";
 
+@font-face {
+    font-family: "roboto-thin";
+    src: url("fonts/Roboto-Thin.ttf");
+}
+@font-face {
+    font-family: "roboto-regular";
+    src: url("fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: "roboto-bold";
+    src: url("fonts/Roboto-Bold.ttf");
+}
+
+body {
+    color: $text;
+    font-family: roboto-thin;
+    overflow-x: hidden;
+}
+
 .section {
     height: 100vh;
     width: 100%;
@@ -12,10 +32,46 @@
 }
 
 .home { 
-    background-image: url("img/home-bg.jpg");
-    background-size: cover;
+    background: black;
 
-    h1 {
-       color: $primary; 
+    .content {
+        z-index: 900;
+        text-align: center;
+
+        h1 {
+            color: $primary; 
+            font-family: roboto-bold;
+            font-size: 50px;
+        }
+        h2 {
+            font-family: roboto-regular;
+            font-size: 20px;
+        }
+        span {
+            color: $text-header;
+        }
+    }
+
+    &::before, &::after { 
+        content: "";
+        z-index: 899;
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 0;
+    }
+
+    &::before {
+        left: 0;
+        border-top: 100vh solid transparent;
+        border-right: 100vw solid transparent;
+        border-image: url(img/home-bg.gif);
+        opacity: 0.2;
+    }
+
+    &::after {
+        right: 0;
+        border-top: 100vh solid transparent;
+        border-right: 100vw solid #101010;
     }
 }
