@@ -1,4 +1,5 @@
 @import "variables";
+@import "home-animations.scss";
 
 @font-face {
     font-family: "roboto-thin";
@@ -37,11 +38,8 @@ section {
 }
 
 .home { 
-    background: url(img/home-bg.jpg), rgba(0, 0, 0, 0.5) !important;
-    background-size: cover;
-    background-blend-mode: multiply;
-
     .content {
+        z-index: 99;
         text-align: center;
 
         h1 {
