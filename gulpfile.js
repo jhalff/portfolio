@@ -28,7 +28,7 @@ function js() {
 exports.js = js
 
 exports.watch = function () {
-    watch("./src/scss/*.scss", css)
+    watch("./src/scss/**/*.scss", css)
     watch("./src/pug/**/*.pug", html)
     watch("./src/js/*.js", js)
 }
