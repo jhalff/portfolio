@@ -6,9 +6,13 @@ let sectionHeight = document.querySelector("section").offsetHeight
 let currentSection = 1
 let scrollerActive = false
 
+
+window.addEventListener("load", () => {
+    goToCachedPosition()
+})
+
 window.addEventListener("scroll", () => { 
-    if (currentSection === 1) navbar.classList.remove("bg")
-    else navbar.classList.add("bg")
+    toggleNavbarBackground()
 })
 
 window.addEventListener("wheel", (e) => {
@@ -23,6 +27,20 @@ window.addEventListener("wheel", (e) => {
         scrollerActive = false
     }, 250)
 })
+
+
+function goToCachedPosition() {
+    const cachedSection = sessionStorage.getItem("current-section")
+    if (cachedSection > 0) navbar.classList.add("bg")
+
+    const targetLink = document.querySelector(`#link-${cachedSection}`)
+    targetLink.click()
+}
+
+function toggleNavbarBackground() {
+    if (currentSection === 1) navbar.classList.remove("bg")
+    else navbar.classList.add("bg")
+}
 
 function scrollToNextSection(e, sectionId) {
     let scrollToY = 0
@@ -43,6 +61,8 @@ function scrollToNextSection(e, sectionId) {
         currentSection = sectionId + 1
         setActiveNavbarItem(e.target)
     }
+
+    sessionStorage.setItem("current-section", currentSection - 1)
     
     window.scrollTo({
         top: scrollToY,

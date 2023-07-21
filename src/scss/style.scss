@@ -59,12 +59,17 @@ section {
 
     &:nth-child(even) { background: $section-even; }
     &:nth-child(odd) { background: $section-odd; }
-}
 
-.center-content {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .center-content {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container {
+        height: 100%;
+        padding: 10rem 0;
+    }
 }
