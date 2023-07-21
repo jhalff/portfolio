@@ -5,7 +5,7 @@
         .frame {
             width: 100%;
             height: 100%;
-            background: black;
+            background: linear-gradient($primary-transparent, $section-odd);;
             border: 10px solid $section-odd;
             box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
         }
