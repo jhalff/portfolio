@@ -17,12 +17,15 @@
 body {
     color: $text;
     font-family: roboto-thin;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 section {
     height: 100vh;
     width: 100%;
+
+    &:nth-child(even) { background: $section-even; }
+    &:nth-child(odd) { background: $section-odd; }
 }
 
 .center-content {
@@ -34,10 +37,11 @@ section {
 }
 
 .home { 
-    background: black;
+    background: url(img/home-bg.jpg), rgba(0, 0, 0, 0.5) !important;
+    background-size: cover;
+    background-blend-mode: multiply;
 
     .content {
-        z-index: 900;
         text-align: center;
 
         h1 {
@@ -52,28 +56,5 @@ section {
         span {
             color: $text-header;
         }
-    }
-
-    &::before, &::after { 
-        content: "";
-        z-index: 899;
-        position: absolute;
-        top: 0;
-        width: 0;
-        height: 0;
-    }
-
-    &::before {
-        left: 0;
-        border-top: 100vh solid transparent;
-        border-right: 100vw solid transparent;
-        border-image: url(img/home-bg.gif);
-        opacity: 0.2;
-    }
-
-    &::after {
-        right: 0;
-        border-top: 100vh solid transparent;
-        border-right: 100vw solid #101010;
     }
 }
