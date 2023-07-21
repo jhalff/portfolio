@@ -1,5 +1,5 @@
 @import "variables";
-@import "home-animations.scss";
+@import "sections/home.scss";
 
 @font-face {
     font-family: "roboto-thin";
@@ -35,24 +35,4 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.home { 
-    .content {
-        z-index: 99;
-        text-align: center;
-
-        h1 {
-            color: $primary; 
-            font-family: roboto-bold;
-            font-size: 50px;
-        }
-        h2 {
-            font-family: roboto-regular;
-            font-size: 20px;
-        }
-        span {
-            color: $text-header;
-        }
-    }
 }
