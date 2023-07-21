@@ -1,11 +1,9 @@
 @import "variables";
 @import "components/navbar.scss";
+@import "components/header.scss";
 @import "sections/home.scss";
+@import "sections/about.scss";
 
-@font-face {
-    font-family: "roboto-thin";
-    src: url("fonts/Roboto-Thin.ttf");
-}
 @font-face {
     font-family: "roboto-regular";
     src: url("fonts/Roboto-Regular.ttf");
@@ -18,8 +16,35 @@
 
 body {
     color: $text;
-    font-family: roboto-thin;
+    font-family: roboto-regular;
     overflow: hidden;
+
+    button {
+        background: $primary;
+        color: $text-header;
+        border: 0;
+        padding: 1rem 2rem;
+        border-radius: 4px;
+        font-family: roboto-bold;
+        text-transform: uppercase;
+        font-size: 14px;
+        transition: 0.25s;
+
+        &:hover {
+            opacity: 0.7;
+            transition: 0.25s;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        transition: 0.25s;
+
+        &:hover {
+            opacity: 0.7;
+            transition: 0.25s;
+        }
+    }
 
     ul {
         list-style: none;

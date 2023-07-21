@@ -15,7 +15,6 @@
 
             a {
                 color: $text-header;
-                font-family: roboto-regular;
                 padding: 1rem;
                 margin: 2rem 0;
                 display: block;
@@ -23,6 +22,7 @@
                 transition: 0.25s;
                 border: 0;
                 background: transparent;
+                text-decoration: none;
 
                 &:hover {
                     cursor: pointer;

@@ -9,7 +9,6 @@
             font-size: 50px;
         }
         h2 {
-            font-family: roboto-regular;
             font-size: 20px;
         }
         span {
@@ -23,7 +22,6 @@
         left: 10%;
         color: $text-header;
         z-index: 99;
-        font-family: roboto-regular;
         font-size: 16px;
 
         &::before {
@@ -35,6 +33,7 @@
             position: relative;
             top: 11px;
             left: -70px;
+            border-radius: 10px;
         }
     }
 
