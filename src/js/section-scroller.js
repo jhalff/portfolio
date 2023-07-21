@@ -1,9 +1,15 @@
+let navbar = document.querySelector(".navbar")
 let navbarItems = document.querySelectorAll(".navbar ul li a")
 
 let totalSections = document.querySelectorAll("section").length
 let sectionHeight = document.querySelector("section").offsetHeight
 let currentSection = 1
 let scrollerActive = false
+
+window.addEventListener("scroll", () => { 
+    if (currentSection === 1) navbar.classList.remove("bg")
+    else navbar.classList.add("bg")
+})
 
 window.addEventListener("wheel", (e) => {
     if (scrollerActive) return
@@ -30,6 +36,7 @@ function scrollToNextSection(e, sectionId) {
         scrollToY = sectionHeight * (currentSection - 1)
         if (currentSection === 1) scrollToY = 0
     }
+
     // Fired from click event
     else {
         scrollToY = sectionHeight * (sectionId)
