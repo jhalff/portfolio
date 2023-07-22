@@ -4,6 +4,7 @@ require("dotenv").config()
 
 const app = express()
 const PORT = process.env.PORT || 3000;
+const { db } = require("./database")
 
 app.set("view engine", "pug")
 app.set("views", path.join(__dirname, "../pug"))
@@ -14,4 +15,8 @@ app.get("/", (req, res) => {
     res.render("layout")
 })
 
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`))
+app.get("/admin", (req, res) => {
+    res.render("admin")
+})
+
+app.listen(PORT, () => console.log(`Server: Running on http://localhost:${PORT}`))
