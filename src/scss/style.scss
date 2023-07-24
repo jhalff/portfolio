@@ -1,8 +1,10 @@
 @import "variables";
-@import "components/navbar.scss";
-@import "components/header.scss";
-@import "sections/home.scss";
-@import "sections/about.scss";
+@import "admin";
+@import "components/navbar";
+@import "components/header";
+@import "components/sky-animations";
+@import "sections/home";
+@import "sections/about";
 
 @font-face {
     font-family: "roboto-regular";

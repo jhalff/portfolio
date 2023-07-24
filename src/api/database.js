@@ -1,4 +1,5 @@
 const mysql = require("mysql")
+const md5 = require("md5")
 require("dotenv").config()
 
 const db = mysql.createConnection({
@@ -19,11 +20,11 @@ db.connect(function(err) {
             if (err) throw err
             if(result.length > 0) return
 
-            const username = "admin"
-            const createUser = `INSERT INTO user (username) VALUES ('admin')`
+            const password = md5(process.env.LOGIN_PASSWORD)
+            const createUser = `INSERT INTO user (username, password) VALUES ('${process.env.LOGIN_USERNAME}', '${password}')`
             db.query(createUser, function(err, result) {
                 if (err) throw err
-                console.log("Database: User 'admin' added")
+                console.log("Database: Main user added")
             }) 
         })
     }) 
