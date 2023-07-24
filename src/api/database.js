@@ -12,7 +12,7 @@ const db = mysql.createConnection({
 db.connect(function(err) {
     if (err) throw err
 
-    const createUserTable = "CREATE TABLE IF NOT EXISTS user (username VARCHAR(5), password VARCHAR(32))"
+    const createUserTable = "CREATE TABLE IF NOT EXISTS user (username VARCHAR(5), password VARCHAR(32), token TEXT)"
     db.query(createUserTable, function(err, result) {
         if (err) throw err
 
@@ -29,7 +29,14 @@ db.connect(function(err) {
         })
     }) 
 
-    const createProjectsTable = "CREATE TABLE IF NOT EXISTS projects (id INT PRIMARY KEY, name VARCHAR(255))"
+    const createProjectsTable = `CREATE TABLE IF NOT EXISTS projects (
+        id INT PRIMARY KEY, 
+        name VARCHAR(255),
+        tags TEXT,
+        description TEXT,
+        image_url VARCHAR(255)
+    )`
+
     db.query(createProjectsTable, function(err, result) {
         if (err) throw err
     }) 

@@ -45,4 +45,16 @@
             margin-left: 50px;
         }
     }
+
+    button {
+        margin-left: 15px;
+
+        &:last-child {
+            margin-left: 0;
+        }
+
+        &.green {
+            background: #30b034;
+        }
+    }
 }

@@ -53,14 +53,6 @@ body {
         padding: 0;
         margin: 0;
     }
-}
-
-section {
-    height: 100vh;
-    width: 100%;
-
-    &:nth-child(even) { background: $section-even; }
-    &:nth-child(odd) { background: $section-odd; }
 
     .center-content {
         height: 100%;
@@ -69,6 +61,14 @@ section {
         align-items: center;
         justify-content: center;
     }
+}
+
+section {
+    height: 100vh;
+    width: 100%;
+
+    &:nth-child(even) { background: $section-even; }
+    &:nth-child(odd) { background: $section-odd; }
 
     .container {
         height: 100%;

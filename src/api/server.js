@@ -1,6 +1,7 @@
 const express = require("express")
 const path = require("path")
 const md5 = require("md5")
+const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
 const app = express()
@@ -17,17 +18,33 @@ app.get("/", (req, res) => {
 })
 
 app.get("/admin", async (req, res) => {
-    if (!req.query.username && !req.query.password) {
-        res.render("login")
-    }
+    if (!req.query.username && !req.query.password) { res.render("login") }
     else {
         const user = await loginUser(req.query.username, req.query.password)
         if (user === undefined) res.render("login")
-        else res.render("admin")
+        else { 
+            const { error, token } = generateJWT(req.query.username)
+            db.query(`UPDATE user SET token = '${token}' WHERE username = '${req.query.username}'`, function(err, result) {
+                if (err) throw err
+                res.render("admin")
+            })
+        }
     }
 })
 
 app.listen(PORT, () => console.log(`Server: Running on http://localhost:${PORT}`))
+
+
+
+function generateJWT(username) {
+    try {
+        const payload = { username }
+        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "24h" })
+        return { error: false, token }
+    } catch (error) {
+        return { error: true }
+    }
+}
 
 function loginUser(username, password) {
     return new Promise(resolve => {

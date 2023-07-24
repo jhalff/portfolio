@@ -8,7 +8,7 @@ html
 
     body
         div.admin
-            div.title
+            div.title.center-content
                 h1 Admin Dashboard
 
             div.container
@@ -17,7 +17,7 @@ html
                         div.col-6 
                             h2 Projects
                         div.col-6
-                            button New
+                            button(onClick="openModal('project', 'new')") New
                     table.table
                         tr 
                             th
@@ -33,6 +33,21 @@ html
                             td HTML, JS, Node, Mysql, Express
                             th
                                 button Edit
+
+                    div.modal.modal-project
+                        div.center-content
+                            form(action="/projects/edit" method="POST")
+                                div.row.header
+                                    div.col-6 
+                                        h2 Project
+                                    div.col-6
+                                        button#modal-save.green(type="submit") Save
+                                        button#modal-cancel(type="button" onClick="closeModal()") Cancel
+
+                                p Name
+                                input(type="text", name="username")
+                                p Tags 
+                                input(type="text", name="tags")
 
 
                 
