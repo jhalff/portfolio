@@ -1,0 +1,42 @@
+section.projects
+    div.row.header
+        div.col-6 
+            h2 Projects
+        div.col-6
+            button(onClick="openModal('project', 'new')") New
+    table.table
+        tr 
+            th
+            th Id 
+            th Name 
+            th Tags
+            th 
+        tr
+            td 
+                img(src="/img/placeholder.png")
+            td 0
+            td Awesome Website 2000
+            td HTML, JS, Node, Mysql, Express
+            th
+                button Edit
+
+    div.modal.modal-project
+        div.center-content
+            form(action="/projects/edit" method="POST")
+                div.row.header
+                    div.col
+                        h2 Project
+                    div.col
+                        button#modal-save.green(type="submit") Save
+                        button#modal-cancel(type="button" onClick="closeModal()") Cancel
+
+                div.image
+                div.row
+                    div.col
+                        p Name
+                        input(type="text", name="name")
+                    div.col
+                        p Tags 
+                        input(type="text", name="tags")
+                p Description 
+                textarea(name="description") 

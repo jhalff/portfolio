@@ -14,10 +14,10 @@ app.use("/img", express.static(path.join(__dirname, "../../public/img")))
 app.use("/fonts", express.static(path.join(__dirname, "../../public/fonts")))
 
 app.get("/", (req, res) => {
-    res.render("layout")
+    res.render("site")
 })
 
-app.get("/admin", async (req, res) => {
+app.get("/cms", async (req, res) => {
     if (!req.query.username && !req.query.password) { res.render("login") }
     else {
         const user = await loginUser(req.query.username, req.query.password)
@@ -26,7 +26,7 @@ app.get("/admin", async (req, res) => {
             const { error, token } = generateJWT(req.query.username)
             db.query(`UPDATE user SET token = '${token}' WHERE username = '${req.query.username}'`, function(err, result) {
                 if (err) throw err
-                res.render("admin")
+                res.render("cms")
             })
         }
     }
@@ -36,6 +36,15 @@ app.listen(PORT, () => console.log(`Server: Running on http://localhost:${PORT}`
 
 
 
+function loginUser(username, password) {
+    return new Promise(resolve => {
+        db.query(`SELECT * FROM user WHERE username LIKE '${username}' AND password LIKE '${md5(password)}'`, function(err, result) {
+            if (err) throw err
+            resolve(result[0])
+        })
+    })
+}
+
 function generateJWT(username) {
     try {
         const payload = { username }
@@ -44,13 +53,4 @@ function generateJWT(username) {
     } catch (error) {
         return { error: true }
     }
-}
-
-function loginUser(username, password) {
-    return new Promise(resolve => {
-        db.query(`SELECT * FROM user WHERE username LIKE '${username}' AND password LIKE '${md5(password)}'`, function(err, result) {
-            if (err) throw err
-            resolve(result[0])
-        })
-    })
 }

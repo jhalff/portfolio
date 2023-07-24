@@ -12,7 +12,17 @@ const db = mysql.createConnection({
 db.connect(function(err) {
     if (err) throw err
 
-    const createUserTable = "CREATE TABLE IF NOT EXISTS user (username VARCHAR(5), password VARCHAR(32), token TEXT)"
+    checkUserTable()
+    checkProjectsTable()
+})
+
+function checkUserTable() {
+    const createUserTable = `CREATE TABLE IF NOT EXISTS user (
+        username VARCHAR(5), 
+        password VARCHAR(32), 
+        token TEXT
+    )`
+
     db.query(createUserTable, function(err, result) {
         if (err) throw err
 
@@ -22,13 +32,16 @@ db.connect(function(err) {
 
             const password = md5(process.env.LOGIN_PASSWORD)
             const createUser = `INSERT INTO user (username, password) VALUES ('${process.env.LOGIN_USERNAME}', '${password}')`
+            
             db.query(createUser, function(err, result) {
                 if (err) throw err
                 console.log("Database: Main user added")
             }) 
         })
     }) 
+}
 
+function checkProjectsTable() {
     const createProjectsTable = `CREATE TABLE IF NOT EXISTS projects (
         id INT PRIMARY KEY, 
         name VARCHAR(255),
@@ -40,6 +53,6 @@ db.connect(function(err) {
     db.query(createProjectsTable, function(err, result) {
         if (err) throw err
     }) 
-})
+}
 
 module.exports = db
