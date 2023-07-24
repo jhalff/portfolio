@@ -7,9 +7,35 @@ html
             include ../../public/compiled/style.css
 
     body
-        section.admin
-            div.center-content
-                h1 Admin Page
+        div.admin
+            div.title
+                h1 Admin Dashboard
+
+            div.container
+                div.projects
+                    div.row.header
+                        div.col-6 
+                            h2 Projects
+                        div.col-6
+                            button New
+                    table.table
+                        tr 
+                            th
+                            th Id 
+                            th Name 
+                            th Tags
+                            th 
+                        tr
+                            td 
+                                img(src="/img/placeholder.png")
+                            td 0
+                            td Awesome Website 2000
+                            td HTML, JS, Node, Mysql, Express
+                            th
+                                button Edit
+
+
+                
     
         script
             include ../js/admin.js

@@ -43,3 +43,48 @@
         }
     }
 }
+
+.admin {
+    height: 100vh;
+    background: $section-odd;
+
+    .title {
+        background: $primary-transparent;
+        padding: 2rem;
+        text-align: center;
+        color: $text-header;
+        font-family: roboto-bold;
+        text-transform: uppercase;
+        margin-bottom: 60px;
+    }
+
+    .header {
+        margin: 40px 0;
+        
+        button {
+            float: right;
+        }
+    }
+
+    .projects {
+        table {
+            background: $section-even;
+            color: $text;
+            box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    
+            th, td {
+                padding: 10px 20px;
+                vertical-align: middle;
+    
+                img {
+                    height: 60px;
+                }
+    
+                button {
+                    background: none;
+                    padding: 0;
+                }
+            }
+        }
+    }
+}
