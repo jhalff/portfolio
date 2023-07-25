@@ -11,11 +11,12 @@ html
             div.fluid-container.full-height
                 div.row.full-height
                     div.col-2.sidebar
-                        include cms/components/sidebar.pug
+                        include cms/sidebar.pug
                     div.col-10.content
-                        include cms/sections/dashboard.pug
-                        include cms/sections/tags.pug
-                        include cms/sections/projects.pug
+                        include cms/dashboard.pug
+                        include cms/tags.pug
+                        include cms/projects.pug
 
         script
-            include ../js/cms.js
+            include ../js/cms-menu.js
+            include ../js/modal-controller.js

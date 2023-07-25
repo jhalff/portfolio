@@ -32,6 +32,16 @@ app.get("/cms", async (req, res) => {
     }
 })
 
+app.get("/cms/projects", (req, res) => {
+    db.query("SELECT * FROM projects", function(err, result) {
+        if (err) throw err
+        res.send(result)
+    })
+})
+app.post("/cms/projects/edit", (req, res) => {
+    console.log(req)
+})
+
 app.listen(PORT, () => console.log(`Server: Running on http://localhost:${PORT}`))
 
 
