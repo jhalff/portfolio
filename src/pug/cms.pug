@@ -13,10 +13,30 @@ html
                     div.col-2.sidebar
                         include cms/sidebar.pug
                     div.col-10.content
-                        include cms/dashboard.pug
-                        include cms/tags.pug
-                        include cms/projects.pug
+                        div.loading#loading-screen
+                            div.icon
+                                div
+                                div
+                                div
+                                div
+                        - if (page.includes("dashboard"))
+                            include cms/dashboard.pug
+                        - if (page.includes("tags")) 
+                            include cms/tags.pug
+                        - if (page.includes("projects")) 
+                            include cms/projects.pug
 
         script
-            include ../js/cms-menu.js
-            include ../js/modal-controller.js
+            include ../js/cms-modal-controller.js
+        
+        script.
+            let token = JSON.parse(`!{JSON.stringify(token)}`)
+            let page = JSON.parse(`!{JSON.stringify(page)}`)
+
+            window.addEventListener("load", () => {
+                const activeMenulink = document.getElementById(`link-${page}`)
+                activeMenulink.classList.add("active")
+                
+                const loadingScreen = document.getElementById("loading-screen")
+                loadingScreen.style.display = "none"
+            })

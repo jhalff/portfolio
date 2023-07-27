@@ -26,13 +26,49 @@
     
     section { 
         padding: 4rem; 
-        display: none;
         background: $section-odd !important;
     }
 
     .full-height { height: 100%; }
     .content { padding: 0; }
     .header button { float: right; }
+
+    .loading {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .icon {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+
+            div {
+                box-sizing: border-box;
+                display: block;
+                position: absolute;
+                width: 64px;
+                height: 64px;
+                margin: 8px;
+                border: 8px solid #fff;
+                border-radius: 50%;
+                animation: loading-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+                border-color: #fff transparent transparent transparent;
+
+                &:nth-child(1) { animation-delay: -0.45s; }
+                &:nth-child(2) { animation-delay: -0.3s; }
+                &:nth-child(3) { animation-delay: -0.15s; }
+            }
+
+            @keyframes loading-animation {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        }
+    }
 
     .sidebar {
         background: $cms-sidebar;
@@ -129,14 +165,40 @@
             box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             padding: 4rem;
+            overflow-x: auto;
 
             p { margin: 0; }
 
             .header { 
                 margin-top: 0;
                 margin-bottom: 20px;
+                --bs-gutter-x: 0;
 
                 .col { padding: 0; }
+                h2 { float: left; }
+
+                .id {
+                    width: 50px;
+                    height: 50px;
+                    background: $section-odd;
+                    float: left;
+                    margin-left: 20px;
+                    border-radius: 10px;
+
+                    input[type="number"] {
+                        width: 80px;
+                        height: 100%;
+                        position: relative;
+                        left: 4px;
+                        background: transparent;
+                        color: $text;
+                        font-size: 40px;
+                        font-family: roboto-bold;
+                        box-shadow: none;
+
+                        &:focus-visible { outline: none; }
+                    }
+                }
             }
 
             .image {

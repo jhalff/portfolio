@@ -11,6 +11,7 @@ section.projects
             th Name 
             th Tags
             th 
+            
         tr
             td 
                 img(src="/img/placeholder.png")
@@ -22,10 +23,12 @@ section.projects
 
     div.modal.modal-project
         div.center-content
-            form(action="/cms/projects/edit" method="POST")
+            form(action=`/cms/projects/edit?token=${token}` method="POST")
                 div.row.header
                     div.col
                         h2 Project
+                        div.id
+                            input(type="number" name="id" value=0 readonly="readonly")
                     div.col
                         button#modal-save.green(type="submit") Save
                         button#modal-cancel(type="button" onClick="closeModal()") Cancel

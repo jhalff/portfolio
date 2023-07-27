@@ -27,7 +27,7 @@
     }
 
     .stars {
-        background: black url(img/stars.png) repeat;
+        background: black url(/img/stars.png) repeat;
         display: block;
         z-index: 1;
         left: 0;
@@ -36,7 +36,7 @@
     .twinkling{
         width: 10000px;
         height: 100%;
-        background: transparent url(img/twinkling.png) repeat;
+        background: transparent url(/img/twinkling.png) repeat;
         background-size: 1000px 1000px;
         z-index: 2;
         -moz-animation: move-background 70s linear infinite;
@@ -49,7 +49,7 @@
     .clouds{
         width: 10000px;
         height: 100%;
-        background: transparent url(img/clouds.png) repeat;
+        background: transparent url(/img/clouds.png) repeat;
         background-size: 1000px 1000px;
         z-index: 3;
         -moz-animation: move-background 150s linear infinite;

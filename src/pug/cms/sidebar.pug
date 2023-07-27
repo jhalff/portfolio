@@ -4,10 +4,10 @@ ul
     li.category 
         p Main 
     li.item
-        a#dashboard.active(onClick="switchToSection(event)") Dashboard
+        a#link-dashboard(href=`/cms?token=${token}`) Dashboard
     li.item 
-        a#tags(onClick="switchToSection(event)") Tags
+        a#link-tags(href=`/cms/tags?token=${token}`) Tags
     li.category 
         p Content 
     li.item 
-        a#projects(onClick="switchToSection(event)") Projects 
+        a#link-projects(href=`/cms/projects?token=${token}`) Projects 

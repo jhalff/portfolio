@@ -43,11 +43,12 @@ function checkUserTable() {
 
 function checkProjectsTable() {
     const createProjectsTable = `CREATE TABLE IF NOT EXISTS projects (
-        id INT PRIMARY KEY, 
+        id int(11) NOT NULL AUTO_INCREMENT, 
+        image_url VARCHAR(255),
         name VARCHAR(255),
         tags TEXT,
         description TEXT,
-        image_url VARCHAR(255)
+        PRIMARY KEY (id)
     )`
 
     db.query(createProjectsTable, function(err, result) {
