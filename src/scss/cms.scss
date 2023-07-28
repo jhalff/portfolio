@@ -1,5 +1,8 @@
 @import "variables";
 @import "components/sky-animations";
+@import "components/loading.scss";
+@import "components/sidebar.scss";
+@import "components/modal.scss";
 
 .login {
     font-family: roboto;
@@ -27,116 +30,39 @@
     section { 
         padding: 4rem; 
         background: $section-odd !important;
+
+        &.projects {
+            height: 100%;
+        }
     }
 
     .full-height { height: 100%; }
-    .content { padding: 0; }
     .header button { float: right; }
 
-    .loading {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .icon {
-            display: inline-block;
-            position: relative;
-            width: 80px;
-            height: 80px;
-
-            div {
-                box-sizing: border-box;
-                display: block;
-                position: absolute;
-                width: 64px;
-                height: 64px;
-                margin: 8px;
-                border: 8px solid #fff;
-                border-radius: 50%;
-                animation: loading-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-                border-color: #fff transparent transparent transparent;
-
-                &:nth-child(1) { animation-delay: -0.45s; }
-                &:nth-child(2) { animation-delay: -0.3s; }
-                &:nth-child(3) { animation-delay: -0.15s; }
-            }
-
-            @keyframes loading-animation {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-        }
-    }
-
-    .sidebar {
-        background: $cms-sidebar;
-        height: 100%;
-        box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-        padding: 1.5rem 2.5rem;
-
-        p { margin: 0; }
-
-        li {
-            padding: 10px 0;
-
-            &.title {
-                color: $text-header;
-                font-family: roboto-bold;
-                font-size: 30px;
-            }
-    
-            &.category {
-                color: $text-header;
-                margin-top: 20px;
-            }
-
-            &.item {
-                padding: 0;
-
-                a {
-                    width: 100%;
-                    height: 100%;
-                    display: block;
-                    padding: 6px 5px;
-                    color: $text;
-
-                    &:hover {
-                        cursor: pointer;
-                    }
-
-                    &.active {
-                        color: $primary;
-
-                        &::before {
-                            content: "";
-                            width: 5px;
-                            height: 36px;
-                            background: $primary;
-                            display: block;
-                            position: absolute;
-                            left: 0;
-                            margin-top: -6px;
-                        }
-                    }
-                }
-            }
-        }
+    .items {
+        height: 75vh;
+        overflow: auto;
     }
 
     table {
         background: $cms-sidebar;
         color: $text;
         box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+        margin: 0;
+
+        tr:first-child { background: $primary-transparent; }
+        
+        th { 
+            color: $text-header; 
+            text-transform: uppercase;
+            font-family: roboto-bold;
+        }
 
         th, td {
             padding: 10px 20px;
             vertical-align: middle;
 
-            img {
-                height: 60px;
-            }
+            img { height: 60px; }
 
             button {
                 background: none;
@@ -145,80 +71,14 @@
         }
     }
 
-    .projects {
-        height: 75%;
+    * {
+        scrollbar-width: auto;
+        scrollbar-color: $text-other #ffffff;
     }
 
-    .modal {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 999;
-        background:rgba(0, 0, 0, 0.9);
-
-        form {
-            width: 60%;
-            height: 80%;
-            background: $section-even;
-            box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            padding: 4rem;
-            overflow-x: auto;
-
-            p { margin: 0; }
-
-            .header { 
-                margin-top: 0;
-                margin-bottom: 20px;
-                --bs-gutter-x: 0;
-
-                .col { padding: 0; }
-                h2 { float: left; }
-
-                .id {
-                    width: 50px;
-                    height: 50px;
-                    background: $section-odd;
-                    float: left;
-                    margin-left: 20px;
-                    border-radius: 10px;
-
-                    input[type="number"] {
-                        width: 80px;
-                        height: 100%;
-                        position: relative;
-                        left: 4px;
-                        background: transparent;
-                        color: $text;
-                        font-size: 40px;
-                        font-family: roboto-bold;
-                        box-shadow: none;
-
-                        &:focus-visible { outline: none; }
-                    }
-                }
-            }
-
-            .image {
-                width: 100%;
-                height: 200px;
-                background: url(img/placeholder.png);
-                background-position: center;
-                background-size: cover;
-                box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-                margin-bottom: 20px;
-                transition: 0.25s;
-
-                &:hover {
-                    opacity: 0.6;
-                    cursor: pointer;
-                    transition: 0.25s;
-                }
-            }
-        }
-    }
+    *::-webkit-scrollbar { width: 10px; }
+    *::-webkit-scrollbar-track  { background: $cms-sidebar; }
+    *::-webkit-scrollbar-thumb { background-color: $text-other; }
 }
 
 .cms, .login {
@@ -249,7 +109,5 @@
         }
     }
 
-    textarea {
-        height: 200px;
-    }
+    textarea { height: 200px; }
 }

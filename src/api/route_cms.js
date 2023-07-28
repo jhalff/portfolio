@@ -28,18 +28,25 @@ module.exports = function(app) {
     })
 
     app.get("/cms/projects", (req, res) => {
-        if (!req.query.token) { res.redirect("/cms/login") }
-        else res.render("cms", { token: req.query.token, page: "projects" })
+        if (!req.query.token) { return res.redirect("/cms/login") }
+        
+        db.query("SELECT * FROM projects", function(err, results) {
+            if (err) throw err
+
+            let data = []            
+            results.forEach(project => {
+                data.push(project)
+            })
+
+            res.render("cms", { 
+                token: req.query.token, 
+                page: "projects",
+                data: data
+            })
+        })
     })
 
 
-    // app.get("/cms/projects", (req, res) => {
-    //     db.query("SELECT * FROM projects", function(err, result) {
-    //         if (err) throw err
-    //         console.log(result)
-    //         res.send(result)
-    //     })
-    // })
     // app.post("/cms/projects/edit", (req, res) => {
     //     let sql
     

@@ -4,22 +4,24 @@ section.projects
             h2 Projects
         div.col-6
             button(onClick="openModal('project', 'new')") New
-    table.table
-        tr 
-            th
-            th Id 
-            th Name 
-            th Tags
-            th 
+    div.items
+        table.table
+            tr 
+                th
+                th Id 
+                th Name 
+                th Tags
+                th 
             
-        tr
-            td 
-                img(src="/img/placeholder.png")
-            td 0
-            td Awesome Website 2000
-            td HTML, JS, Node, Mysql, Express
-            th
-                button Edit
+            each project in data
+                tr
+                    td 
+                        img(src="/img/placeholder.png")
+                    td 0
+                    td Awesome Website 2000
+                    td HTML, JS, Node, Mysql, Express
+                    th
+                        button Edit
 
     div.modal.modal-project
         div.center-content
@@ -43,3 +45,7 @@ section.projects
                         input(type="text", name="tags")
                 p Description 
                 textarea(name="description") 
+
+script.
+    let token = JSON.parse(`!{JSON.stringify(token)}`)
+    let data = JSON.parse(`!{JSON.stringify(data)}`)
