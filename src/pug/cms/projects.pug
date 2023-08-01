@@ -3,7 +3,8 @@ section.projects
         div.col-6 
             h2 Projects
         div.col-6
-            button(onClick="openModal('project', 'new')") New
+            form(action=`/cms/projects/new?token=${token}` method="GET")
+                button(type="submit") New
     div.items
         table.table
             tr 
@@ -16,35 +17,35 @@ section.projects
             each project in data
                 tr
                     td 
-                        img(src="/img/placeholder.png")
-                    td 0
-                    td Awesome Website 2000
-                    td HTML, JS, Node, Mysql, Express
+                        img(src=project.image_url)
+                    td= project.id
+                    td= project.name
+                    td= project.tags
                     th
-                        button Edit
+                        button(onClick=`openModal('project', ${project.id})`) Edit
+                
+                div(class=`modal project-${project.id}`)
+                    div.center-content
+                        form(action=`/cms/projects/edit?token=${token}` method="POST")
+                            div.row.header
+                                div.col
+                                    h2 Project
+                                    div.id
+                                        input(type="number" name="id" value=project.id readonly="readonly")
+                                div.col
+                                    button#modal-save.green(type="submit") Save
+                                    button#modal-cancel(type="button" onClick="closeModal()") Cancel
 
-    div.modal.modal-project
-        div.center-content
-            form(action=`/cms/projects/edit?token=${token}` method="POST")
-                div.row.header
-                    div.col
-                        h2 Project
-                        div.id
-                            input(type="number" name="id" value=0 readonly="readonly")
-                    div.col
-                        button#modal-save.green(type="submit") Save
-                        button#modal-cancel(type="button" onClick="closeModal()") Cancel
-
-                div.image
-                div.row
-                    div.col
-                        p Name
-                        input(type="text", name="name")
-                    div.col
-                        p Tags 
-                        input(type="text", name="tags")
-                p Description 
-                textarea(name="description") 
+                            div.image
+                            div.row
+                                div.col
+                                    p Name
+                                    input(type="text", name="name")
+                                div.col
+                                    p Tags 
+                                    input(type="text", name="tags")
+                            p Description 
+                            textarea(name="description") 
 
 script.
     let token = JSON.parse(`!{JSON.stringify(token)}`)

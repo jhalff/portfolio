@@ -1,5 +1,5 @@
-function openModal(type, id) {
-    const modal = document.querySelector(`.modal-${type}`)
+async function openModal(type, id) {
+    const modal = document.querySelector(`.${type}-${id}`)
     modal.style.display = "block"
     document.addEventListener("click", modalClickListener)
 }

@@ -53,6 +53,23 @@ function checkProjectsTable() {
 
     db.query(createProjectsTable, function(err, result) {
         if (err) throw err
+
+        db.query("SELECT * FROM projects", function(err, results) {
+            if (err) throw err
+            if(results.length > 0) return
+
+            const createProject = `INSERT INTO projects (image_url, name, tags, description) VALUES (
+                "/img/placeholder.png", 
+                "My Project",
+                "HTML, JS",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse bibendum faucibus magna non tempus."
+            )`
+            
+            db.query(createProject, function(err, result) {
+                if (err) throw err
+                console.log("Database: First project added")
+            }) 
+        })
     }) 
 }
 

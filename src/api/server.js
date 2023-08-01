@@ -17,6 +17,13 @@ app.get("/", (req, res) => {
     res.render("site")
 })
 
-require("./route_cms")(app)
+app.get("/cms", async (req, res) => {
+    if (!req.query.token) { return res.redirect("/cms/login") }
+    else res.render("cms", { token: req.query.token, page: "dashboard" })
+})
+
+require("./routes/r_login")(app)
+require("./routes/r_tags")(app)
+require("./routes/r_projects")(app)
 
 app.listen(PORT, () => console.log(`Server: Running on http://localhost:${PORT}`))
