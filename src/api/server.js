@@ -23,7 +23,6 @@ app.get("/cms", async (req, res) => {
 })
 
 require("./routes/r_login")(app)
-require("./routes/r_tags")(app)
 require("./routes/r_projects")(app)
 
 app.listen(PORT, () => console.log(`Server: Running on http://localhost:${PORT}`))

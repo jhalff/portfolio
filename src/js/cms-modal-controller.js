@@ -1,10 +1,11 @@
 async function openModal(type, id) {
-    const modal = document.querySelector(`.${type}-${id}`)
-    modal.style.display = "block"
+    const modal = document.getElementsByClassName(`modal ${type}`)
+    modal[0].style.display = "block"
     document.addEventListener("click", modalClickListener)
 }
 
 function closeModal() {
+    console.log(document.querySelector(".modal"))
     document.querySelector(".modal").style.display = "none"
     document.removeEventListener("click", modalClickListener)
 }

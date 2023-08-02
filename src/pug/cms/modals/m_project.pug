@@ -1,0 +1,22 @@
+div(class=`modal project`)
+    div.center-content
+        form(action=`/cms/projects/edit?token=${token}` method="POST")
+            div.header
+                div.col
+                    h2 Project
+                    div.id
+                        input(type="number" name="id" readonly="readonly")
+                div.col
+                    button#modal-save.green(type="submit") Save
+                    button#modal-cancel(type="button" onClick="closeModal()") Cancel
+                    
+            div.image
+            div.row
+                div.col
+                    p Name
+                    input(type="text", name="name")
+                div.col
+                    p Tags 
+                    input(type="text", name="tags")
+            p Description 
+            textarea(name="description")
