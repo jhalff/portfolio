@@ -7,7 +7,8 @@ module.exports = function(app) {
         if (req.query.id) {
             db.query(`SELECT * FROM projects WHERE id = ${req.query.id}`, function(err, results) {
                 if (err) throw err
-                res.send(results[0])
+                if (results.length > 0) res.send(results[0])
+                else res.send({ no_results: true })
             })
         }
         else {
@@ -28,18 +29,6 @@ module.exports = function(app) {
         }
     })
 
-    app.get("/cms/projects/new", (req, res) => {
-        if (!req.query.token) { return res.redirect("/") }
-
-        const newProjectQuery = `INSERT INTO projects (image_url, name, tags, description) 
-            VALUES ("/img/placeholder.png", "My Project", "", "")`
-        
-        db.query(newProjectQuery, function(err, result) {
-            if (err) throw err
-            res.redirect(req.get("referer"))
-        }) 
-    })
-
     app.get("/cms/projects/delete", (req, res) => {
         if (!req.query.token) { return res.redirect("/") }
 
@@ -50,17 +39,24 @@ module.exports = function(app) {
     })
 
 
-    // app.post("/cms/projects/edit", (req, res) => {
-    //     let sql
+    app.post("/cms/projects/edit", (req, res) => {
+        let sql = ""
     
-    //     if (req.body.id === "0") {
-    //         sql = `INSERT INTO projects (image_url, name, tags, description) 
-    //             VALUES ('/img/placeholder.png', '${req.body.name}', '${req.body.tags}', '${req.body.description}')`
-    //     }   
+        if (req.body.id === "0") {
+            sql = `INSERT INTO projects (image_url, name, tags, description) 
+                VALUES ('/img/placeholder.png', '${req.body.name}', '${req.body.tags}', '${req.body.description}')`
+        }   
+        else {
+            sql = `UPDATE projects SET 
+                name = '${req.body.name}', 
+                tags = '${req.body.tags}',
+                description = '${req.body.description}'
+                WHERE id = ${req.body.id}`
+        }
     
-    //     // db.query(sql, function(err, result) {
-    //     //     if (err) throw err
-    //     //     res.redirect("/cms?")
-    //     // })
-    // })
+        db.query(sql, function(err, result) {
+            if (err) throw err
+            res.redirect(req.get("referer"))
+        })
+    })
 }

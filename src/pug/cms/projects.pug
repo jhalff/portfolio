@@ -3,8 +3,7 @@ section.projects
         div.col-6 
             h2 Projects
         div.col-6
-            form(action=`/cms/projects/new?token=${token}` method="GET")
-                button(type="submit") New
+            button(onClick="openModal('projects', 0)") New
 
     div.items
         table.table

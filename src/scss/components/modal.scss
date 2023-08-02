@@ -22,12 +22,16 @@
             position: fixed;
             width: 60%;
             left: 20%;
-            padding: 1rem 4rem;
+            padding: 1.5rem 4rem;
             margin: 0;
             background: $primary-transparent;
 
             .col { padding: 0; }
-            h2 { float: left; }
+
+            h2 { 
+                float: left; 
+                margin: 0;
+            }
 
             .id {
                 width: 50px;
