@@ -2,13 +2,11 @@ const db = require("../database")
 
 module.exports = function(app) {
     app.get("/cms/projects", (req, res) => {
-        if (!req.query.token) { return res.redirect("/cms/login") }
+        if (!req.query.token) { return res.redirect("/") }
 
         if (req.query.id) {
             db.query(`SELECT * FROM projects WHERE id = ${req.query.id}`, function(err, results) {
                 if (err) throw err
-                
-                console.log(results)
                 res.send(results[0])
             })
         }
@@ -29,15 +27,23 @@ module.exports = function(app) {
             })
         }
     })
+
     app.get("/cms/projects/new", (req, res) => {
-        const newProjectQuery = `INSERT INTO projects (image_url, name, tags, description) VALUES (
-            "/img/placeholder.png", 
-            "My Project",
-            "",
-            ""
-        )`
+        if (!req.query.token) { return res.redirect("/") }
+
+        const newProjectQuery = `INSERT INTO projects (image_url, name, tags, description) 
+            VALUES ("/img/placeholder.png", "My Project", "", "")`
         
         db.query(newProjectQuery, function(err, result) {
+            if (err) throw err
+            res.redirect(req.get("referer"))
+        }) 
+    })
+
+    app.get("/cms/projects/delete", (req, res) => {
+        if (!req.query.token) { return res.redirect("/") }
+
+        db.query(`DELETE FROM projects WHERE id = ${req.query.id}`, function(err, result) {
             if (err) throw err
             res.redirect(req.get("referer"))
         }) 

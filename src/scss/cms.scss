@@ -65,8 +65,15 @@
             img { height: 60px; }
 
             button {
-                background: none;
+                border: 0;
+                font-family: roboto-bold;
+                text-transform: uppercase;
+                font-size: 14px;
+                color: $text;
                 padding: 0;
+                background: none;
+
+                &.remove { color: $primary; }
             }
         }
     }

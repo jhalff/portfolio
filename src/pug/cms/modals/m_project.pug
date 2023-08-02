@@ -1,4 +1,4 @@
-div(class=`modal project`)
+div(class=`modal projects`)
     div.center-content
         form(action=`/cms/projects/edit?token=${token}` method="POST")
             div.header
@@ -9,7 +9,7 @@ div(class=`modal project`)
                 div.col
                     button#modal-save.green(type="submit") Save
                     button#modal-cancel(type="button" onClick="closeModal()") Cancel
-                    
+            div.header-space
             div.image
             div.row
                 div.col

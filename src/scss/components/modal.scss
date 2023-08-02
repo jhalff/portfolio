@@ -13,15 +13,18 @@
         background: $section-even;
         box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
         border-radius: 10px;
-        padding: 4rem;
+        padding: 0 4rem 4rem 4rem;
         overflow-x: auto;
 
         p { margin: 0; }
 
         .header { 
-            margin-top: 0;
-            margin-bottom: 20px;
-            --bs-gutter-x: 0;
+            position: fixed;
+            width: 60%;
+            left: 20%;
+            padding: 1rem 4rem;
+            margin: 0;
+            background: $primary-transparent;
 
             .col { padding: 0; }
             h2 { float: left; }
@@ -49,6 +52,8 @@
                 }
             }
         }
+
+        .header-space { padding: 4rem; } 
 
         .image {
             width: 100%;
