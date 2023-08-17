@@ -1,0 +1,114 @@
+@import "variables";
+@import "./components/sky-animations.scss";
+
+@font-face {
+    font-family: "roboto-regular";
+    src: url("/fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: "roboto-bold";
+    src: url("/fonts/Roboto-Bold.ttf");
+}
+
+body {
+    color: $text;
+    font-family: roboto-regular;
+    overflow: hidden;
+
+    button {
+        background: $primary;
+        color: $text-header;
+        border: 0;
+        padding: 1rem 2rem;
+        border-radius: 4px;
+        font-family: roboto-bold;
+        text-transform: uppercase;
+        font-size: 14px;
+        transition: 0.25s;
+
+        &:hover {
+            opacity: 0.7;
+            transition: 0.25s;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        transition: 0.25s;
+
+        &:hover {
+            opacity: 0.7;
+            transition: 0.25s;
+        }
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .center-content {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+section {
+    height: 100vh;
+    width: 100%;
+
+    &:nth-child(even) { background: $section-even; }
+    &:nth-child(odd) { background: $section-odd; }
+
+    .container {
+        height: 100%;
+        padding: 10rem 0;
+    }
+}
+
+
+
+.home { 
+    .content {
+        z-index: 99;
+        text-align: center;
+
+        h1 {
+            color: $primary; 
+            font-family: roboto-bold;
+            font-size: 50px;
+        }
+        h2 {
+            font-size: 20px;
+        }
+        span {
+            color: $text-header;
+        }
+    }
+
+    .scroll-tip {
+        position: absolute;
+        bottom: 10%;
+        left: 10%;
+        color: $text-header;
+        z-index: 99;
+        font-size: 16px;
+
+        &::before {
+            content: "";
+            width: 70%;
+            height: 2px;
+            background: $text-header;
+            display: block;
+            position: relative;
+            top: 11px;
+            left: -70px;
+            border-radius: 10px;
+        }
+    }
+}
