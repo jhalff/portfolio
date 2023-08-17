@@ -73,6 +73,67 @@ section {
     }
 }
 
+.header {
+    margin-bottom: 2.5rem;
+
+    h2 {
+        color: $text-header;
+        font-family: roboto-bold;
+        font-size: 40px;
+
+        &::after {
+            content: "";
+            width: 70px;
+            height: 2px;
+            background: $primary;
+            display: block;
+            position: relative;
+            top: 4px;
+            border-radius: 10px;
+        }
+    }
+
+    h3 {
+        color: $primary;
+        margin: 0;
+    }
+
+    .section-id {
+        position: absolute;
+        right: 0;
+        margin-top: -80px;
+
+        span {
+            color: $text-other;
+            font-size: 40px;
+        }
+
+        &::after {
+            content: "";
+            width: 35px;
+            height: 2px;
+            background: $primary;
+            display: block;
+            position: relative;
+            top: -32px;
+            border-radius: 10px;
+            margin-left: 50px;
+        }
+    }
+
+    button {
+        margin-left: 15px;
+
+        &:last-child {
+            margin-left: 0;
+        }
+
+        &.green {
+            background: #30b034;
+        }
+    }
+}
+
 
 
 .home { 
