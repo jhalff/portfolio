@@ -1,7 +1,12 @@
 @import "variables";
 
+@import "./components/header.scss";
 @import "./components/navbar.scss";
 @import "./components/sky-animations.scss";
+
+@import "./sections/about.scss";
+@import "./sections/home.scss";
+@import "./sections/projects.scss";
 
 @font-face {
     font-family: "roboto-regular";
@@ -70,108 +75,5 @@ section {
     .container {
         height: 100%;
         padding: 10rem 0;
-    }
-}
-
-.header {
-    margin-bottom: 2.5rem;
-
-    h2 {
-        color: $text-header;
-        font-family: roboto-bold;
-        font-size: 40px;
-
-        &::after {
-            content: "";
-            width: 70px;
-            height: 2px;
-            background: $primary;
-            display: block;
-            position: relative;
-            top: 4px;
-            border-radius: 10px;
-        }
-    }
-
-    h3 {
-        color: $primary;
-        margin: 0;
-    }
-
-    .section-id {
-        position: absolute;
-        right: 0;
-        margin-top: -80px;
-
-        span {
-            color: $text-other;
-            font-size: 40px;
-        }
-
-        &::after {
-            content: "";
-            width: 35px;
-            height: 2px;
-            background: $primary;
-            display: block;
-            position: relative;
-            top: -32px;
-            border-radius: 10px;
-            margin-left: 50px;
-        }
-    }
-
-    button {
-        margin-left: 15px;
-
-        &:last-child {
-            margin-left: 0;
-        }
-
-        &.green {
-            background: #30b034;
-        }
-    }
-}
-
-
-
-.home { 
-    .content {
-        z-index: 99;
-        text-align: center;
-
-        h1 {
-            color: $primary; 
-            font-family: roboto-bold;
-            font-size: 50px;
-        }
-        h2 {
-            font-size: 20px;
-        }
-        span {
-            color: $text-header;
-        }
-    }
-
-    .scroll-tip {
-        position: absolute;
-        bottom: 10%;
-        left: 10%;
-        color: $text-header;
-        z-index: 99;
-        font-size: 16px;
-
-        &::before {
-            content: "";
-            width: 70%;
-            height: 2px;
-            background: $text-header;
-            display: block;
-            position: relative;
-            top: 11px;
-            left: -70px;
-            border-radius: 10px;
-        }
     }
 }

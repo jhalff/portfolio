@@ -1,0 +1,21 @@
+.projects {
+    .slider {
+        width: 100%;
+        height: 80%;
+        position: relative;
+        overflow: hidden;
+
+        .project {
+            display: inline-block;
+            width: 25%;
+            height: 100%;
+            position: absolute;
+            padding-right: 2rem;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
