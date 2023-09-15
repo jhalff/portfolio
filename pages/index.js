@@ -1,9 +1,8 @@
-import Navbar from "../components/navbar"
-
-import HomeSection from "../sections/home"
-import AboutSection from "../sections/about"
-import ProjectsSection from "../sections/projects"
-import ContactSection from "../sections/contact"
+import Navbar from "../content/site/navbar"
+import HomeSection from "../content/site/home"
+import AboutSection from "../content/site/about"
+import ProjectsSection from "../content/site/projects"
+import ContactSection from "../content/site/contact"
 
 export default function Index() {
     return (
