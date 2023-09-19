@@ -7,7 +7,7 @@ export default function Sidebar() {
                     <a id="logout-link">Logout</a>
                 </li>
                 <li className="category">
-                    <p>Main</p>
+                    <p>General</p>
                 </li>
                 <li className="item" id="cms-dashboard">
                     <a>Dashboard</a>

@@ -7,7 +7,6 @@ import Dashboard from "../content/cms/dashboard"
 import Projects from "../content/cms/projects"
 
 export default function Cms() {
-    const [firstLoad, setFirstLoad] = useState(true)
     const [loggedIn, setLoggedIn] = useState(false)
     const [currentContent, setCurrentContent] = useState("cms-dashboard")
 
@@ -18,8 +17,7 @@ export default function Cms() {
             else loginEventListener()
         }
         else {
-            if (firstLoad) setCurrentContent(sessionStorage.getItem("cached-content") || "cms-dashboard")
-
+            setCurrentContent(sessionStorage.getItem("cached-content") || "cms-dashboard")
             logoutEventListener()
             switchContentListener()
         }

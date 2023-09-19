@@ -11,5 +11,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 require("./routes/r_login")(app)
+require("./routes/r_projects")(app)
 
 app.listen(PORT, () => console.log(`Server: Running on http://localhost:${PORT}`))
