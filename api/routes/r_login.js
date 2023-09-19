@@ -3,9 +3,19 @@ const md5 = require("md5")
 const jwt = require("jsonwebtoken")
 
 module.exports = function(app) {
+    app.get("/login", async (req, res) => {
+        if (!req.query.token) res.send(400)
+        else {
+            db.query(`SELECT * FROM user WHERE token LIKE "${req.query.token}"`, function(err, result) {
+                if (err) throw err
+                res.send(result[0])
+            })
+        }
+    })
+
     app.post("/login", async (req, res) => {
         const user = await getUser(req.body.username, req.body.password)
-        if (user === undefined) res.status(400)
+        if (user === undefined) res.sendStatus(400)
         else {
             const { token } = generateJWT(user.username)
             db.query(`UPDATE user SET token = '${token}' WHERE username = '${user.username}'`, function(err, result) {

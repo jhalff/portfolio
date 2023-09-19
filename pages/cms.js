@@ -7,13 +7,34 @@ import Dashboard from "../content/cms/dashboard"
 import Projects from "../content/cms/projects"
 
 export default function Cms() {
+    const [firstLoad, setFirstLoad] = useState(true)
     const [loggedIn, setLoggedIn] = useState(false)
     const [currentContent, setCurrentContent] = useState("cms-dashboard")
 
     useEffect(() => {
-        if (!loggedIn) loginEventListener()
-        else logoutEventListener()
-    }, [loggedIn])
+        if (!loggedIn) {
+            const cachedToken = sessionStorage.getItem("token")
+            if (cachedToken !== null) loginWithCachedToken(cachedToken)
+            else loginEventListener()
+        }
+        else {
+            if (firstLoad) setCurrentContent(sessionStorage.getItem("cached-content") || "cms-dashboard")
+
+            logoutEventListener()
+            switchContentListener()
+        }
+    }, [loggedIn, currentContent])
+
+    async function loginWithCachedToken(token) {
+        const response = await fetch(`${API_URL}/login?token=${token}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        })
+
+        const result = await response.json()
+        if (result.username === undefined) return
+        else setLoggedIn(true)
+    }
     
     function loginEventListener() {
         const loginForm = window.document.querySelector(".login form")
@@ -44,7 +65,21 @@ export default function Cms() {
 
         logoutLink.addEventListener("click", (e) => {
             e.preventDefault()
+            sessionStorage.removeItem("token")
             setLoggedIn(false)
+        })
+    }
+
+    function switchContentListener() {
+        const links = window.document.querySelectorAll(".sidebar .item")
+        links.forEach(link => {
+            if (link.id === currentContent) link.classList.add("active")
+
+            link.addEventListener("click", (e) => {
+                e.preventDefault()
+                setCurrentContent(link.id)
+                sessionStorage.setItem("cached-content", link.id)
+            })
         })
     }
     
@@ -54,7 +89,7 @@ export default function Cms() {
                 <div className="cms fluid-container full-height">
                     <div className="row full-height">
                         <div className="col-2 sidebar">
-                            <Sidebar currentContent={currentContent} />
+                            <Sidebar />
                         </div>
                         <div className="col-10 content">
                             { currentContent === "cms-dashboard" ? <Dashboard /> : "" }
