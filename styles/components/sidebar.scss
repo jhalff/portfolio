@@ -10,9 +10,11 @@
         padding: 10px 0;
 
         &.title {
-            color: $text-header;
-            font-family: roboto-bold;
-            font-size: 30px;
+            p {
+                color: $text-header;
+                font-family: roboto-bold;
+                font-size: 30px;
+            }
         }
 
         &.category {

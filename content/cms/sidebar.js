@@ -1,9 +1,12 @@
+import { logout } from "../../pages/cms"
+
 export default function Sidebar() {
     return (
         <>
             <ul>
                 <li className="title">
                     <p>CMS</p>
+                    <a id="logout-link">Logout</a>
                 </li>
                 <li className="category">
                     <p>Main</p>
