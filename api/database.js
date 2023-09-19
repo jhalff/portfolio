@@ -17,7 +17,8 @@ db.connect(function(err) {
 function checkUserTable() {
     const createUserTable = `CREATE TABLE IF NOT EXISTS user (
         username VARCHAR(5), 
-        password VARCHAR(32)
+        password VARCHAR(32),
+        token TEXT
     )`
 
     db.query(createUserTable, function(err, result) {

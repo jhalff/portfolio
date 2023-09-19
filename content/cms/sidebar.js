@@ -1,5 +1,3 @@
-import { logout } from "../../pages/cms"
-
 export default function Sidebar() {
     return (
         <>
@@ -11,13 +9,13 @@ export default function Sidebar() {
                 <li className="category">
                     <p>Main</p>
                 </li>
-                <li className="item">
+                <li className="item" id="cms-dashboard">
                     <a>Dashboard</a>
                 </li>
                 <li className="category">
                     <p>Content</p>
                 </li>
-                <li className="item">
+                <li className="item" id="cms-projects">
                     <a>Projects</a>
                 </li>
             </ul>

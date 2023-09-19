@@ -4,9 +4,11 @@ import { API_URL } from "../config"
 import Login from "../content/cms/login"
 import Sidebar from "../content/cms/sidebar"
 import Dashboard from "../content/cms/dashboard"
+import Projects from "../content/cms/projects"
 
 export default function Cms() {
     const [loggedIn, setLoggedIn] = useState(false)
+    const [currentContent, setCurrentContent] = useState("cms-dashboard")
 
     useEffect(() => {
         if (!loggedIn) loginEventListener()
@@ -30,7 +32,10 @@ export default function Cms() {
     
             const result = await response.json()
             if (result.user === undefined) return
-            else setLoggedIn(true)
+            else {
+                sessionStorage.setItem("token", result.user.token)
+                setLoggedIn(true)
+            }
         })
     }
 
@@ -42,24 +47,25 @@ export default function Cms() {
             setLoggedIn(false)
         })
     }
+    
+    function Layout() {
+        return (
+            <>
+                <div className="cms fluid-container full-height">
+                    <div className="row full-height">
+                        <div className="col-2 sidebar">
+                            <Sidebar currentContent={currentContent} />
+                        </div>
+                        <div className="col-10 content">
+                            { currentContent === "cms-dashboard" ? <Dashboard /> : "" }
+                            { currentContent === "cms-projects" ? <Projects /> : "" }
+                        </div>
+                    </div>
+                </div>
+            </>
+        )
+    }
 
     if (loggedIn) return <Layout />
     else return <Login />
-}
-
-function Layout() {
-    return (
-        <>
-            <div className="cms fluid-container full-height">
-                <div className="row full-height">
-                    <div className="col-2 sidebar">
-                        <Sidebar />
-                    </div>
-                    <div className="col-10 content">
-                        <Dashboard />
-                    </div>
-                </div>
-            </div>
-        </>
-    )
 }
