@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+
 export default function AboutSection() {
     return (
         <>
@@ -28,8 +31,8 @@ export default function AboutSection() {
                                     </div>
                                     <div className="col">
                                         <ul>
-                                            <li> <a href="https://github.com/jhalff" target="_blank"> <i className="fa-brands fa-github"></i>github.com/jhalff</a></li>
-                                            <li> <a href="https://www.linkedin.com/in/jhalff/" target="_blank"> <i className="fa-brands fa-linkedin-in"></i>linkedin.com/in/jhalff</a></li>
+                                            <li> <a href="https://github.com/jhalff" target="_blank"> <FontAwesomeIcon icon={faGithubSquare} /> github.com/jhalff</a></li>
+                                            <li> <a href="https://www.linkedin.com/in/jhalff/" target="_blank"> <FontAwesomeIcon icon={faLinkedin} /> linkedin.com/in/jhalff</a></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -13,9 +13,25 @@
     }
 
     .full-height { height: 100%; }
-    .header button { float: right; }
 
-    .items {
+    .header {
+        span {
+            font-size: 34px;
+            color: $text;
+
+            &.divider { color: $text-other; }
+        }
+
+        button {
+            float: right; 
+
+            &#saveButton{
+                background: green;
+            }
+        }
+    }
+
+    .item-list {
         height: 75vh;
         overflow-y: auto;
         overflow-x: hidden;
