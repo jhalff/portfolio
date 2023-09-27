@@ -1,20 +1,55 @@
 .projects {
+    .header { margin-bottom: 0; }
+
     .slider {
-        width: 100%;
-        height: 80%;
         position: relative;
-        overflow: hidden;
+        width: 100%;
 
-        .project {
+        .items {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 0;
+            cursor: pointer;
+            
+            &.active { cursor: grab; }
+        }
+        
+        .item {
             display: inline-block;
-            width: 25%;
-            height: 100%;
-            position: absolute;
-            padding-right: 2rem;
+            margin-left: 20px;
+            user-select: none;
+            background: $section-odd;
+            width: 31%;
+            height: 50vh;
+            background-position: center !important;
+            background-size: cover !important;
+            
+            &:last-child { margin-right: 20px; }
 
-            img {
-                width: 100%;
+            .hover-info {
+                opacity: 0;
+                position: absolute;
+                bottom: 0;
+                color: $text-header;
+                width: 31%;
                 height: 100%;
+                background: $bg-75;
+                text-align: center;
+                transition: 0.4s opacity;
+
+                b { font-size: 35px; }
+                p { 
+                    font-size: 20px;
+                    color: $text;
+                }
+            }
+
+            &:hover {
+                .hover-info { 
+                    opacity: 1;
+                }
             }
         }
     }
