@@ -23,9 +23,8 @@ export default function AboutSection() {
                                 <div className="row details">
                                     <div className="col">
                                         <ul>
-                                            <li> <b>Age: </b>21</li>
+                                            <li> <b>Age: </b>22</li>
                                             <li> <b>Name: </b>Jelmer Halff</li>
-                                            <li> <b>Experience: </b>Looking to land my first job :&#41;</li>
                                             <li> <b>Location: </b>The Netherlands</li>
                                         </ul>
                                     </div>

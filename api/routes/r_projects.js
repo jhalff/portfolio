@@ -16,9 +16,9 @@ module.exports = function(app) {
     })
 
     app.post("/projects/edit", upload.single("thumbnail_file"), async (req, res) => {
-        if (!req.query.token || !req.query.id) res.sendStatus(400)
+        if (!req.query.token || !req.query.id) return res.sendStatus(400)
         const tokenIsValid = await findUserByToken(req.query.token)
-        if (!tokenIsValid) res.sendStatus(400)
+        if (!tokenIsValid) return res.sendStatus(400)
 
         let thumbnailFileUrl = req.body.thumbnail_url
         const thumbnailFileName = `project-${req.query.id}-thumbnail.png`
@@ -44,10 +44,20 @@ module.exports = function(app) {
         }
 
         db.query(sqlQuery, function(err, result) {
-                if (err) throw err
-                res.send(true)
-            }
-        )
+            if (err) throw err
+            res.send(true)
+        })
+    })
+
+    app.delete("/projects/delete", async (req, res) => {
+        if (!req.query.token || !req.query.id) return res.sendStatus(400)
+        const tokenIsValid = await findUserByToken(req.query.token)
+        if (!tokenIsValid) return res.sendStatus(400)
+
+        db.query(`DELETE FROM projects WHERE id = ${req.query.id}`, function(err, result) {
+            if (err) throw err
+            res.send(true)
+        })
     })
 
     function findUserByToken(token) {

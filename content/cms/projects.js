@@ -74,6 +74,13 @@ export default function Projects() {
                             changeImage("thumbnail")
                         }}>
                     </div>
+                    <button onClick={async (e) => {
+                        e.preventDefault()
+                        const sql = `${API_URL}/projects/delete?id=${project.id}&token=${sessionStorage.getItem("token")}`
+                        const response = await fetch(sql, {method: "DELETE"})
+                        const itemDeleted = await response.json()
+                        if (itemDeleted) window.location.reload(false)
+                    }}>Delete</button>
                 </form>
             </div>
         )
