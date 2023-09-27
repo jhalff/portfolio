@@ -5,7 +5,6 @@
 .pnp.js
 
 # testing
-/api/data-factory.js
 /coverage
 
 # next.js
