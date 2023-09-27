@@ -7,8 +7,8 @@ const app = express()
 const PORT = process.env.PORT
 
 app.use(cors({ origin: process.env.CLIENT_URL }))
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
 
 require("./routes/r_login")(app)
 require("./routes/r_projects")(app)

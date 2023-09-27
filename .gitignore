@@ -34,3 +34,6 @@ config.js
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Uploaded files
+/public/uploads/*

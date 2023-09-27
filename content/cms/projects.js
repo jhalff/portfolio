@@ -50,14 +50,21 @@ export default function Projects() {
         return (
             <div className="display-item">
                 <form>
-                    <label>Name</label>
-                    <input type="text" name="name" placeholder="Project Name" defaultValue={project !== undefined ? project.name : ""}/>
+                    <div className="row">
+                        <div className="col-6">
+                            <label>Name</label>
+                            <input type="text" name="name" placeholder="Project Name" defaultValue={project !== undefined ? project.name : ""}/>
+                        </div>
+                        <div className="col-6">
+                            <label>Categories</label>
+                            <input type="text" name="categories" placeholder="HTML, CSS" defaultValue={project !== undefined ? project.categories : ""}/>
+                        </div>
+                    </div>
                     <label>Description</label>
                     <textarea name="description" defaultValue={project !== undefined ? project.description : ""}/>
-                    <label>Categories</label>
-                    <input type="text" name="categories" placeholder="HTML, CSS" defaultValue={project !== undefined ? project.categories : ""}/>
                     <label>Thumbnail</label>
                     <input type="file" name="thumbnail_file" accept=".png,.jpg"/>
+                    <input type="text" name="thumbnail_url" defaultValue={project !== undefined ? project.thumbnail_url : "/img/placeholder.png"}/>
                     <div className="thumbnail-preview" 
                         style={
                             project !== undefined ? 
@@ -83,6 +90,24 @@ export default function Projects() {
             const previewImageUrl = URL.createObjectURL(selectedFile)
             filePreview.style.background = `url("${previewImageUrl}")`
         })
+    }
+
+    async function saveItem(id) {
+        const formData = new FormData()
+        formData.append("name", document.querySelector(".display-item input[name='name']").value)
+        formData.append("categories", document.querySelector(".display-item input[name='categories']").value)
+        formData.append("description", document.querySelector(".display-item textarea[name='description']").value)
+        formData.append("thumbnail_url", document.querySelector(".display-item input[name='thumbnail_url']").value)
+        formData.append("thumbnail_file", document.querySelector(".display-item input[name='thumbnail_file']").files[0])
+
+        const response = await fetch(`${API_URL}/projects/edit?id=${id}&token=${sessionStorage.getItem("token")}`, {
+            method: "POST",
+            enctype: "multipart/form-data",
+            body: formData
+        })
+
+        const itemSaved = await response.json()
+        if (itemSaved) window.location.reload(false)
     }
 
     if (activeItem === null) {
@@ -119,6 +144,10 @@ export default function Projects() {
                             </h2>
                         </div>
                         <div className="col-6">
+                            <button className="green" onClick={(e) => {
+                                e.preventDefault()
+                                saveItem(data.id)
+                            }}>Save</button>
                             <button onClick={(e) => {
                                 e.preventDefault()
                                 setActiveItem(null)

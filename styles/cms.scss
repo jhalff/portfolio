@@ -69,7 +69,7 @@
         background-color: $section-even;
         padding: 2rem;
 
-        input[type="file"] {
+        input[name="thumbnail_file"], input[name="thumbnail_url"] {
             opacity: 0;
             position: absolute;
         }
@@ -79,6 +79,7 @@
             height: 250px;
             background-position: center !important;
             background-size: cover !important;
+            border-radius: 4px;
 
             &:hover {
                 opacity: 0.8;
