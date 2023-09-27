@@ -28,15 +28,22 @@ module.exports = function(app) {
             fs.renameSync("../public/uploads/new-upload.png", newimagePath)
         }
 
-        const updateQuery = `
-            UPDATE projects SET 
-                name = '${req.body.name}', 
-                categories = '${req.body.categories}', 
-                description = '${req.body.description}',
-                thumbnail_url = '${thumbnailFileUrl}'
-            WHERE id = ${req.query.id}`
+        let sqlQuery = ""
+        if (req.query.id > 0) {
+            sqlQuery = `
+                UPDATE projects SET 
+                    name = '${req.body.name}', 
+                    categories = '${req.body.categories}', 
+                    description = '${req.body.description}',
+                    thumbnail_url = '${thumbnailFileUrl}'
+                WHERE id = ${req.query.id}`
+        } else {
+            sqlQuery = `
+                INSERT INTO projects (name, categories, description, thumbnail_url) 
+                    VALUES('${req.body.name}', '${req.body.categories}', '${req.body.description}', '${thumbnailFileUrl}')`
+        }
 
-        db.query(updateQuery, function(err, result) {
+        db.query(sqlQuery, function(err, result) {
                 if (err) throw err
                 res.send(true)
             }

@@ -146,7 +146,7 @@ export default function Projects() {
                         <div className="col-6">
                             <button className="green" onClick={(e) => {
                                 e.preventDefault()
-                                saveItem(data.id)
+                                saveItem(data !== undefined ? data.id : 0)
                             }}>Save</button>
                             <button onClick={(e) => {
                                 e.preventDefault()
