@@ -66,7 +66,10 @@ export default function ProjectsSection() {
                             <ul className="items">
                                 { items.map((item) => {
                                     return (
-                                        <li className="item" style={{background: `url('${item.thumbnail_url}')`}}>
+                                        <li className="item" key={item.id} style={{background: `url('${item.thumbnail_url}')`}} onClick={(e) => {
+                                            e.preventDefault()
+                                            window.location.href = `/projects?id=${item.id}`
+                                        }}>
                                             <div className="hover-info">
                                                 <div className="center-content">
                                                     <div>

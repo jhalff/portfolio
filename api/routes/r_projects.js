@@ -9,10 +9,17 @@ const upload = multer({ storage: storage })
 
 module.exports = function(app) {
     app.get("/projects", async (req, res) => {
-        db.query("SELECT * FROM projects", function(err, results) {
-            if (err) throw err
-            res.send(results)
-        })
+        if (!req.query.id) {
+            db.query("SELECT * FROM projects", function(err, results) {
+                if (err) throw err
+                res.send(results)
+            })
+        } else {
+            db.query(`SELECT * FROM projects WHERE id = ${req.query.id}`, function(err, results) {
+                if (err) throw err
+                res.send(results[0])
+            })
+        }
     })
 
     app.post("/projects/edit", upload.single("thumbnail_file"), async (req, res) => {

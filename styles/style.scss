@@ -24,6 +24,7 @@ body {
     color: $text;
     font-family: roboto-regular;
     overflow: hidden;
+    background: $section-odd;
 
     button {
         background: $primary;
@@ -78,5 +79,15 @@ section {
     .container {
         height: 100%;
         padding: 10rem 0;
+    }
+}
+
+.project-view {
+    .back {
+        padding: 2rem 0;
+    }
+
+    img { 
+        width: 100%; 
     }
 }

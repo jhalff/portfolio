@@ -48,7 +48,7 @@ export default function Navbar() {
         if (shouldScrollDown && currentSection < totalSections) currentSection = currentSection + 1
         else if (!shouldScrollDown && currentSection > 0) currentSection = currentSection - 1
 
-        if (prevSection !== currentSection) scrollToSection(currentSection)
+        if (prevSection !== currentSection && currentSection < navbarItems.length) scrollToSection(currentSection)
         else scrollActive = false
     }
 
